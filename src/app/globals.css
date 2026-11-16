@@ -1,26 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f6f3ec;
+  --paper-2: #ece7db;
+  --ink: #12161c;
+  --ink-2: #4a505a;
+  --line: #d9d3c4;
+  --brand: #1f3a34;
+  --brand-2: #2d5248;
+  --accent: #b8863b;
+  --danger: #a3372b;
 }
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-paper2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink-2);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand2: var(--brand-2);
+  --color-accent: var(--accent);
+  --color-danger: var(--danger);
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+body { background: var(--paper); color: var(--ink); font-family: var(--font-inter), system-ui, sans-serif; }
+h1, h2, h3, .serif { font-family: var(--font-newsreader), Georgia, serif; font-weight: 400; letter-spacing: -0.01em; }
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.65rem 1.1rem; border-radius:.375rem; font-size:.9rem; font-weight:500; transition:background .15s; cursor:pointer; }
+.btn-primary { background: var(--brand); color:#fff; } .btn-primary:hover { background: var(--brand-2); }
+.btn-ghost { border:1px solid var(--line); background:transparent; } .btn-ghost:hover { background: var(--paper-2); }
+.btn:disabled { opacity:.5; cursor:not-allowed; }
+.input { width:100%; border:1px solid var(--line); background:#fffdf8; border-radius:.375rem; padding:.6rem .8rem; font-size:.95rem; }
+.input:focus { outline:2px solid var(--brand); outline-offset:1px; }
+.card { background:#fffdf8; border:1px solid var(--line); border-radius:.5rem; }
+.label { font-size:.8rem; font-weight:500; color: var(--ink-2); display:block; margin-bottom:.3rem; }
+.prose-ai { white-space: pre-wrap; line-height:1.65; }
