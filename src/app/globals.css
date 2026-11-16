@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 :root {
   --paper: #f6f3ec;
@@ -6,9 +6,9 @@
   --ink: #12161c;
   --ink-2: #4a505a;
   --line: #d9d3c4;
-  --brand: #011331;
-  --brand-2: #0c2552;
-  --accent: #be8741;
+  --brand: #1f3a34;
+  --brand-2: #2d5248;
+  --accent: #b8863b;
   --danger: #a3372b;
 }
 @theme inline {
