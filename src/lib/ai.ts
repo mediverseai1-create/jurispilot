@@ -6,7 +6,7 @@ export class AiError extends Error {
 
 function model(json: boolean) {
   const key = process.env.GEMINI_API_KEY;
-  if (!key) throw new AiError("The AI provider is not configured yet (GEMINI_API_KEY missing).", 503);
+  if (!key) throw new AiError("AI analysis is temporarily unavailable. Please try again shortly.", 503);
   const g = new GoogleGenerativeAI(key);
   return g.getGenerativeModel({
     model: process.env.GEMINI_MODEL || "gemini-2.0-flash",

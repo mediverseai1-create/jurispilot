@@ -1,24 +1,23 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import { Logo } from "@/components/site";
 
 type Mode = "login" | "signup" | "forgot" | "reset";
 const copy: Record<Mode, { title: string; cta: string }> = {
-  login: { title: "Sign in", cta: "Sign in" },
-  signup: { title: "Create your account", cta: "Create account" },
+  login: { title: "Log in", cta: "Log in" },
+  signup: { title: "Create account", cta: "Create account" },
   forgot: { title: "Reset your password", cta: "Send reset link" },
   reset: { title: "Choose a new password", cta: "Update password" },
 };
 
 export default function AuthForm({ mode }: { mode: Mode }) {
-  const router = useRouter();
   const sp = useSearchParams();
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(
-    sp.get("error") === "not_configured" ? { ok: false, text: "Supabase is not configured on this deployment." } : null,
+    sp.get("error") === "not_configured" ? { ok: false, text: "Sign-in is temporarily unavailable. Please try again shortly." } : null,
   );
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -37,16 +36,15 @@ export default function AuthForm({ mode }: { mode: Mode }) {
         const { error } = await sb.auth.signInWithPassword({ email, password });
         if (error) throw error;
         const next = sp.get("next");
-        router.replace(next && next.startsWith("/app") ? next : "/app");
-        router.refresh();
+        window.location.assign(next && next.startsWith("/app") ? next : "/app");
       } else if (mode === "signup") {
         const { data, error } = await sb.auth.signUp({
           email, password,
-          options: { data: { full_name: String(f.get("name") ?? "") }, emailRedirectTo: `${origin}/auth/callback` },
+          options: { data: { full_name: String(f.get("name") ?? "") }, emailRedirectTo: `${origin}/auth/callback${sp.get("plan") ? "?next=/app/billing" : ""}` },
         });
         if (error) throw error;
-        if (data.session) { router.replace("/app"); router.refresh(); }
-        else setMsg({ ok: true, text: "Check your email to confirm your account, then sign in." });
+        if (data.session) window.location.assign(sp.get("plan") ? "/app/billing" : "/app");
+        else setMsg({ ok: true, text: "Check your email to confirm your account, then log in." });
       } else if (mode === "forgot") {
         const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: `${origin}/auth/callback?next=/reset-password` });
         if (error) throw error;
@@ -54,7 +52,7 @@ export default function AuthForm({ mode }: { mode: Mode }) {
       } else {
         const { error } = await sb.auth.updateUser({ password });
         if (error) throw error;
-        router.replace("/app");
+        window.location.assign("/app");
       }
     } catch (err) {
       setMsg({ ok: false, text: err instanceof Error ? err.message : "Something went wrong." });
@@ -73,9 +71,9 @@ export default function AuthForm({ mode }: { mode: Mode }) {
           {msg && <p role="alert" className={`text-sm ${msg.ok ? "text-brand" : "text-danger"}`}>{msg.text}</p>}
           <button className="btn btn-primary w-full" disabled={busy}>{busy ? "Please wait…" : copy[mode].cta}</button>
           <div className="text-sm text-ink2 flex justify-between">
-            {mode === "login" && <><Link href="/signup" className="underline">Create account</Link><Link href="/forgot-password" className="underline">Forgot password?</Link></>}
-            {mode === "signup" && <Link href="/login" className="underline">Already have an account?</Link>}
-            {mode === "forgot" && <Link href="/login" className="underline">Back to sign in</Link>}
+            {mode === "login" && <><Link href="/signup" className="underline">Sign up</Link><Link href="/forgot-password" className="underline">Forgot password?</Link></>}
+            {mode === "signup" && <Link href="/login" className="underline">Already registered? Log in</Link>}
+            {mode === "forgot" && <Link href="/login" className="underline">Back to log in</Link>}
           </div>
         </form>
       </div>

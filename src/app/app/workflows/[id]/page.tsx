@@ -18,7 +18,7 @@ export default async function Run({ params }: { params: Promise<{ id: string }> 
   const r = run.result as Result;
   return (
     <div className="space-y-6">
-      <Link href="/app/workflows" className="text-sm underline">← Workflows</Link>
+      <Link href="/app/workflows" className="text-sm underline">Workflows</Link>
       <div><h1 className="text-4xl capitalize">{run.workflow.replace("_", " ")}</h1>
         <p className="text-ink2 text-sm">{(run.documents as unknown as { title: string } | null)?.title ?? "Deleted document"} · {new Date(run.created_at).toLocaleString()}</p></div>
       <div className="card p-5"><h2 className="text-xl mb-2">Summary</h2><p className="prose-ai">{r.summary}</p></div>

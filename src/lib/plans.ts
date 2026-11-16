@@ -5,20 +5,20 @@ export const PLANS: Record<PlanId, {
   aiActions: number; documents: number; features: string[]; checkoutUrl?: string;
 }> = {
   free: {
-    id: "free", name: "Starter", price: 0, blurb: "Try the workspace on a small caseload.",
+    id: "free", name: "Starter", price: 0, blurb: "Evaluate the platform on live documents.",
     aiActions: 15, documents: 5,
-    features: ["15 AI actions per month", "5 documents in the Vault", "Assistant and all workflows", "Community support"],
+    features: ["15 AI actions per month", "5 documents in the Vault", "Assistant and all workflows"],
   },
   pro: {
-    id: "pro", name: "Professional", price: 57, blurb: "For solo practitioners and small teams.",
+    id: "pro", name: "Professional", price: 57, blurb: "For small legal teams running steady review volume.",
     aiActions: 400, documents: 100,
-    features: ["400 AI actions per month", "100 documents in the Vault", "Contract review and clause extraction", "Matter organisation", "Email support"],
+    features: ["400 AI actions per month", "100 documents in the Vault", "Contract review and clause extraction", "Matter organisation"],
     checkoutUrl: process.env.NEXT_PUBLIC_SELAR_PRO_URL || "https://selar.com/57plan?currency=USD",
   },
   firm: {
-    id: "firm", name: "Firm", price: 97, blurb: "For firms with a steady flow of matters.",
+    id: "firm", name: "Firm", price: 97, blurb: "For firms and departments with high matter volume.",
     aiActions: 2000, documents: 1000,
-    features: ["2,000 AI actions per month", "1,000 documents in the Vault", "Everything in Professional", "Priority processing", "Priority support"],
+    features: ["2,000 AI actions per month", "1,000 documents in the Vault", "Everything in Professional", "Highest monthly AI allowance"],
     checkoutUrl: process.env.NEXT_PUBLIC_SELAR_FIRM_URL || "https://selar.com/97plan?currency=USD",
   },
 };

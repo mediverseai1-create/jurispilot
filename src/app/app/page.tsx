@@ -25,9 +25,9 @@ export default async function Dashboard() {
         <div className="card p-5"><p className="label">Matters</p><p className="serif text-3xl">{matters ?? 0}</p></div>
       </div>
       {(docs ?? 0) === 0 && (
-        <div className="card p-6"><h2 className="text-2xl">Start with a document</h2>
-          <p className="text-ink2 mt-1">Add a contract to the Vault, then run a review or ask the Assistant about it.</p>
-          <Link href="/app/vault" className="btn btn-primary mt-4">Add a document</Link></div>
+        <div className="card p-6"><h2 className="text-2xl">Add your first document</h2>
+          <p className="text-ink2 mt-1">Add a contract to the Vault, then run a workflow or put questions to the Assistant.</p>
+          <Link href="/app/vault" className="underline mt-4 inline-block">Go to the Vault</Link></div>
       )}
       <div className="grid md:grid-cols-2 gap-5">
         <div className="card p-5"><h2 className="text-xl mb-3">Recent workflow runs</h2>
