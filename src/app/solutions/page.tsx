@@ -16,6 +16,13 @@ export default function Solutions() {
         <div className="mt-12 grid md:grid-cols-2 gap-5">
           {s.map(([t, d]) => (<div key={t} className="card p-7"><h2 className="text-2xl">{t}</h2><p className="mt-2 text-ink2">{d}</p></div>))}
         </div>
+        <h2 className="text-3xl mt-16">How teams roll it out</h2>
+        <div className="mt-6 grid md:grid-cols-3 gap-5">
+          {[["Start with one document type", "Choose a high-volume agreement type such as NDAs or vendor paper and run it through contract review."],
+            ["Standardise the instruction", "Give reviewers a shared note stating the position taken, so results are comparable across matters."],
+            ["Extend across matters", "Add clause extraction and memo drafting once the review routine is settled, and track consumption on the dashboard."]].map(([t, d]) => (
+            <div key={t} className="border-t-2 border-brand pt-4"><h3 className="text-xl">{t}</h3><p className="mt-2 text-sm text-ink2">{d}</p></div>))}
+        </div>
         <Link href="/signup" className="btn btn-primary mt-10">Sign up</Link>
       </section>
     </Shell>

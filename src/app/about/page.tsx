@@ -10,6 +10,13 @@ export default function About() {
           <p>We design for accountability. Findings quote the source, limitations are stated with every result, and all output is a draft until a professional approves it.</p>
           <p>JurisPilot is an independent company. It is not a law firm, does not give legal advice, and is not affiliated with any other legal technology provider.</p>
         </div>
+        <h2 className="text-3xl mt-14">Principles we build to</h2>
+        <ul className="mt-5 space-y-4 text-ink2 list-disc ml-5 text-lg">
+          <li>Sourced output: every finding points back to the text it came from.</li>
+          <li>Stated limits: the platform says what it could not read or verify.</li>
+          <li>Professional control: lawyers approve, edit and decide.</li>
+          <li>Clear pricing: published rates, published limits, no hidden tiers.</li>
+        </ul>
       </section>
     </Shell>
   );
