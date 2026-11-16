@@ -1,20 +1,21 @@
 import Link from "next/link";
 
-export function Mark({ size = 28 }: { size?: number }) {
+export function Mark({ height = 30, light = false }: { height?: number; light?: boolean }) {
+  const navy = light ? "#ffffff" : "#0f1b3d";
   return (
-    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
-      <rect width="32" height="32" rx="7" fill="#1f3a34" />
-      <path d="M9 22V9h8a4.5 4.5 0 0 1 0 9h-3.5" fill="none" stroke="#f6f3ec" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="22.5" cy="23" r="2.2" fill="#b8863b" />
+    <svg height={height} viewBox="0 0 48 56" aria-hidden="true">
+      <path d="M3 9h13v27c0 7-5 12-12 12H1v-7h2c3 0 5-2 5-5V16H3z" fill={navy} />
+      <path d="M22 6h9l11 11v8H22z" fill="#c08a43" />
+      <path d="M22 29h20v4H22zm0 7h20v4H22zm-4 7h24v4H18z" fill={navy} />
     </svg>
   );
 }
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
-    <Link href="/" className={`serif text-2xl flex items-center gap-2 ${light ? "text-white" : "text-ink"}`}>
-      <Mark />
-      JurisPilot
+    <Link href="/" aria-label="JurisPilot home" className="flex items-center gap-2 text-[1.45rem] font-extrabold tracking-tight leading-none" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+      <Mark light={light} />
+      <span><span className={light ? "text-white" : "text-brand"}>Juris</span><span className="text-accent">Pilot</span></span>
     </Link>
   );
 }
