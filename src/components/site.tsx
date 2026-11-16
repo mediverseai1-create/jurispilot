@@ -1,21 +1,10 @@
 import Link from "next/link";
 
-export function Mark({ height = 30, light = false }: { height?: number; light?: boolean }) {
-  const navy = light ? "#ffffff" : "#0f1b3d";
-  return (
-    <svg height={height} viewBox="0 0 48 56" aria-hidden="true">
-      <path d="M3 9h13v27c0 7-5 12-12 12H1v-7h2c3 0 5-2 5-5V16H3z" fill={navy} />
-      <path d="M22 6h9l11 11v8H22z" fill="#c08a43" />
-      <path d="M22 29h20v4H22zm0 7h20v4H22zm-4 7h24v4H18z" fill={navy} />
-    </svg>
-  );
-}
-
 export function Logo({ light = false }: { light?: boolean }) {
   return (
-    <Link href="/" aria-label="JurisPilot home" className="flex items-center gap-2 text-[1.45rem] font-extrabold tracking-tight leading-none" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
-      <Mark light={light} />
-      <span><span className={light ? "text-white" : "text-brand"}>Juris</span><span className="text-accent">Pilot</span></span>
+    <Link href="/" aria-label="JurisPilot home" className="inline-flex shrink-0">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={light ? "/logo-light.png" : "/logo.png"} alt="JurisPilot" width={514} height={99} className="h-8 w-auto" />
     </Link>
   );
 }
