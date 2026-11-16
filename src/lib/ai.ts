@@ -9,7 +9,7 @@ function model(json: boolean) {
   if (!key) throw new AiError("AI analysis is temporarily unavailable. Please try again shortly.", 503);
   const g = new GoogleGenerativeAI(key);
   return g.getGenerativeModel({
-    model: process.env.GEMINI_MODEL || "gemini-2.0-flash",
+    model: process.env.GEMINI_MODEL || "gemini-3-flash-preview",
     systemInstruction:
       "You are JurisPilot, an AI assistant for legal professionals. You are not a lawyer and your output is a draft for professional review. " +
       "Ground every statement about a document in the text provided and cite short quotes or section references. " +
